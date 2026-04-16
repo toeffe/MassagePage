@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gjesager Massage · DenDerBy</title>
+<meta name="description" content="Professionel massage i DenDerBy. Behandlinger med blandet fokus på velvære, smertelindring og sportsrestitution. Bestil tid via telefon eller e-mail.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F5F0E8;
+    --sand: #E8DFD0;
+    --stone: #C4B9A8;
+    --moss: #6B7C5E;
+    --moss-light: #8A9E79;
+    --bark: #3D3028;
+    --bark-mid: #5C4A3A;
+    --text: #2A2118;
+    --text-muted: #7A6E65;
+    --white: #FDFAF5;
+    --accent: #8A6E4B;
+    --accent-light: #B8956A;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+    --r: 3px;
+    --transition: 0.3s ease;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--cream);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.25rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background var(--transition), box-shadow var(--transition);
+  }
+  nav.scrolled {
+    background: rgba(245, 240, 232, 0.95);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 1px 0 rgba(60,40,20,0.08);
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: var(--bark);
+    text-decoration: none;
+  }
+  .nav-logo span { font-style: italic; color: var(--accent); }
+  .nav-links { display: flex; gap: 2rem; align-items: center; }
+  .nav-links a {
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--bark-mid);
+    text-decoration: none;
+    transition: color var(--transition);
+  }
+  .nav-links a:hover { color: var(--moss); }
+  .nav-book {
+    font-size: 0.78rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.12em !important;
+    background: var(--bark) !important;
+    color: var(--white) !important;
+    padding: 0.6rem 1.4rem !important;
+    border-radius: 2px !important;
+    transition: background var(--transition) !important;
+  }
+  .nav-book:hover { background: var(--accent) !important; color: var(--white) !important; }
+
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--bark); transition: var(--transition); }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-left {
+    background: var(--bark);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 5rem 5rem 8vw;
+    position: relative;
+  }
+  .hero-left::after {
+    content: '';
+    position: absolute;
+    top: 0; right: -1px; bottom: 0;
+    width: 80px;
+    background: var(--bark);
+    clip-path: polygon(0 0, 0 100%, 100% 100%);
+  }
+  .hero-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--stone);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.08;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.35s forwards;
+  }
+  .hero-title em { font-style: italic; color: var(--accent-light); }
+  .hero-sub {
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: var(--stone);
+    max-width: 340px;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.5s forwards;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.65s forwards;
+  }
+  .btn-primary {
+    display: inline-block;
+    background: var(--moss);
+    color: var(--white);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 1rem 2.2rem;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: background var(--transition), transform var(--transition);
+    border: none; cursor: pointer;
+  }
+  .btn-primary:hover { background: var(--moss-light); transform: translateY(-1px); }
+  .btn-outline {
+    display: inline-block;
+    background: transparent;
+    color: var(--stone);
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 1rem 2.2rem;
+    border-radius: 2px;
+    text-decoration: none;
+    border: 1px solid rgba(196,185,168,0.4);
+    transition: border-color var(--transition), color var(--transition);
+  }
+  .btn-outline:hover { border-color: var(--stone); color: var(--white); }
+
+  .hero-right {
+    position: relative;
+    background: var(--sand);
+    overflow: hidden;
+  }
+  .hero-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+  }
+  .hero-img-placeholder {
+    width: 100%; height: 100%;
+    background: linear-gradient(160deg, #D4C9B5 0%, #BFB09C 40%, #A89882 100%);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-img-placeholder svg { opacity: 0.15; }
+  .hero-badge {
+    position: absolute;
+    bottom: 3rem; left: -1rem;
+    background: var(--white);
+    border-radius: 3px;
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 8px 32px rgba(40,25,10,0.12);
+    opacity: 0;
+    animation: fadeUp 0.8s 0.9s forwards;
+  }
+  .hero-badge strong { display: block; font-family: var(--serif); font-size: 1.8rem; font-weight: 400; color: var(--bark); }
+  .hero-badge span { font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.05em; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* SECTION SHARED */
+  section { position: relative; }
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--moss);
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--bark);
+  }
+  .section-title em { font-style: italic; color: var(--accent); }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+  .py { padding: 7rem 0; }
+
+  /* SERVICES */
+  #services { background: var(--white); }
+  .services-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: end;
+    margin-bottom: 4rem;
+  }
+  .services-intro {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.9;
+    align-self: end;
+    padding-bottom: 0.3rem;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: var(--sand);
+    border: 1.5px solid var(--sand);
+  }
+  .service-card {
+    background: var(--white);
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: background var(--transition);
+    cursor: default;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--moss);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+  }
+  .service-card:hover { background: var(--cream); }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-icon {
+    width: 40px; height: 40px;
+    margin-bottom: 1.5rem;
+    color: var(--moss);
+  }
+  .service-name {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--bark);
+    margin-bottom: 0.5rem;
+  }
+  .service-desc {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+  }
+  .service-tag {
+    display: inline-block;
+    margin-top: 1.25rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--moss);
+    font-weight: 500;
+  }
+
+  /* ABOUT */
+  #about {
+    background: var(--bark);
+    color: var(--white);
+    overflow: hidden;
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: 6rem;
+    align-items: center;
+  }
+  .about-img-wrap {
+    position: relative;
+    aspect-ratio: 3/4;
+  }
+  .about-img-bg {
+    width: 100%; height: 100%;
+    background: linear-gradient(180deg, #5C4A3A 0%, #3D3028 100%);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .about-img-bg svg { opacity: 0.12; }
+  .about-frame {
+    position: absolute;
+    inset: -1rem;
+    border: 1px solid rgba(196,185,168,0.2);
+    border-radius: 2px;
+    pointer-events: none;
+  }
+  .about-content .section-label { color: var(--stone); }
+  .about-content .section-title { color: var(--white); }
+  .about-content .section-title em { color: var(--accent-light); }
+  .about-body {
+    margin-top: 1.5rem;
+    font-size: 0.95rem;
+    color: var(--stone);
+    line-height: 1.9;
+  }
+  .about-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(196,185,168,0.15);
+  }
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 2.8rem;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1;
+  }
+  .stat-label { font-size: 0.75rem; color: var(--stone); margin-top: 0.3rem; letter-spacing: 0.05em; }
+  .cert-list { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .cert-badge {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: rgba(196,185,168,0.1);
+    color: var(--stone);
+    border: 1px solid rgba(196,185,168,0.2);
+    padding: 0.4rem 0.9rem;
+    border-radius: 2px;
+  }
+
+  /* PRICING */
+  #pricing { background: var(--cream); }
+  .pricing-header { text-align: center; margin-bottom: 4rem; }
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .price-card {
+    background: var(--white);
+    border: 1.5px solid var(--sand);
+    border-radius: 2px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    position: relative;
+    transition: border-color var(--transition), transform var(--transition);
+  }
+  .price-card:hover { border-color: var(--moss); transform: translateY(-3px); }
+  .price-card.featured {
+    border-color: var(--moss);
+    background: var(--bark);
+  }
+  .price-popular {
+    position: absolute;
+    top: -1px; left: 50%; transform: translateX(-50%);
+    background: var(--moss);
+    color: var(--white);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 0.3rem 1rem;
+    border-radius: 0 0 3px 3px;
+  }
+  .price-duration {
+    font-family: var(--serif);
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+  }
+  .price-card.featured .price-duration { color: var(--stone); }
+  .price-amount {
+    font-family: var(--serif);
+    font-size: 3.2rem;
+    font-weight: 300;
+    color: var(--bark);
+    line-height: 1;
+  }
+  .price-card.featured .price-amount { color: var(--white); }
+  .price-currency { font-size: 1.2rem; vertical-align: super; }
+  .price-note {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+  }
+  .price-card.featured .price-note { color: var(--stone); }
+  .price-divider {
+    height: 1px;
+    background: var(--sand);
+    margin: 1.5rem 0;
+  }
+  .price-card.featured .price-divider { background: rgba(196,185,168,0.2); }
+  .price-features { list-style: none; text-align: left; }
+  .price-features li {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    padding: 0.3rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .price-card.featured .price-features li { color: var(--stone); }
+  .price-features li::before {
+    content: '';
+    display: inline-block;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--moss);
+    flex-shrink: 0;
+  }
+  .price-btn {
+    display: block;
+    width: 100%;
+    margin-top: 2rem;
+    padding: 0.85rem;
+    text-align: center;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all var(--transition);
+    border: 1.5px solid var(--bark);
+    color: var(--bark);
+    background: transparent;
+    cursor: pointer;
+    font-family: var(--sans);
+  }
+  .price-card.featured .price-btn {
+    background: var(--moss);
+    border-color: var(--moss);
+    color: var(--white);
+  }
+  .price-btn:hover { background: var(--bark); color: var(--white); }
+  .price-card.featured .price-btn:hover { background: var(--moss-light); border-color: var(--moss-light); }
+
+  /* TRUST */
+  #trust { background: var(--sand); }
+  .trust-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .testimonial {
+    background: var(--white);
+    padding: 2rem 1.75rem;
+    border-radius: 2px;
+    position: relative;
+  }
+  .testimonial::before {
+    content: '"';
+    font-family: var(--serif);
+    font-size: 5rem;
+    color: var(--sand);
+    position: absolute;
+    top: -0.5rem; left: 1.25rem;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .testimonial-text {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    position: relative;
+    margin-bottom: 1.25rem;
+  }
+  .testimonial-author { font-size: 0.8rem; font-weight: 500; color: var(--bark); }
+  .testimonial-role { font-size: 0.75rem; color: var(--text-muted); }
+  .stars { color: var(--accent); font-size: 0.75rem; margin-bottom: 0.75rem; letter-spacing: 0.1em; }
+  .trust-numbers {
+    display: flex;
+    justify-content: center;
+    gap: 5rem;
+    margin-top: 4rem;
+    padding-top: 4rem;
+    border-top: 1px solid var(--stone);
+  }
+  .trust-num .num {
+    font-family: var(--serif);
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--bark);
+    line-height: 1;
+  }
+  .trust-num .lbl { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.3rem; }
+
+  /* BOOKING */
+  #booking {
+    background: var(--white);
+    text-align: center;
+  }
+  .booking-inner { max-width: 700px; margin: 0 auto; }
+  .booking-inner .section-title { margin-bottom: 1rem; }
+  .booking-sub {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+  }
+  .booking-embed {
+    background: var(--cream);
+    border: 1.5px solid var(--sand);
+    border-radius: 2px;
+    padding: 3rem 2rem;
+    margin-bottom: 2rem;
+  }
+  .booking-placeholder-text {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+  }
+  .booking-placeholder-note {
+    font-size: 0.8rem;
+    color: var(--stone);
+    background: var(--sand);
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 2px;
+    border: 1px solid var(--stone);
+  }
+
+  /* CONTACT */
+  #contact { background: var(--bark); color: var(--white); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .contact-info .section-label { color: var(--stone); }
+  .contact-info .section-title { color: var(--white); }
+  .contact-info .section-title em { color: var(--accent-light); }
+  .contact-details { margin-top: 2rem; }
+  .contact-row {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(196,185,168,0.1);
+  }
+  .contact-row:first-child { border-top: 1px solid rgba(196,185,168,0.1); }
+  .contact-icon { color: var(--moss-light); flex-shrink: 0; margin-top: 2px; }
+  .contact-row-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--stone); margin-bottom: 0.15rem; }
+  .contact-row-value { font-size: 0.95rem; color: var(--white); }
+  .contact-row-value a { color: var(--white); text-decoration: none; }
+  .contact-row-value a:hover { color: var(--accent-light); }
+  .map-embed {
+    border-radius: 2px;
+    overflow: hidden;
+    height: 280px;
+    background: var(--bark-mid);
+    border: 1px solid rgba(196,185,168,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .map-placeholder {
+    text-align: center;
+  }
+  .map-placeholder p { font-size: 0.82rem; color: var(--stone); margin-top: 0.5rem; }
+  .map-embed iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  .hours-grid {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+  .hours-row { font-size: 0.85rem; color: var(--stone); }
+  .hours-row strong { color: var(--white); }
+
+  /* FOOTER */
+  footer {
+    background: #1E160F;
+    color: var(--stone);
+    padding: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-logo {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: var(--white);
+  }
+  .footer-logo span { font-style: italic; color: var(--accent-light); }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a {
+    font-size: 0.75rem;
+    color: var(--stone);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    transition: color var(--transition);
+  }
+  .footer-links a:hover { color: var(--white); }
+  .footer-copy { font-size: 0.75rem; }
+
+  /* STICKY CTA */
+  .sticky-cta {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 50;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+    pointer-events: none;
+  }
+  .sticky-cta.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+  }
+  .sticky-cta a {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--moss);
+    color: var(--white);
+    padding: 0.85rem 1.5rem;
+    border-radius: 2px;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    transition: background var(--transition);
+  }
+  .sticky-cta a:hover { background: var(--moss-light); }
+
+  /* MOBILE */
+  @media (max-width: 900px) {
+    #hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 8rem 2rem 4rem; }
+    .hero-left::after { display: none; }
+    .hero-right { min-height: 300px; }
+    .hero-badge { left: 1rem; }
+    .services-header { grid-template-columns: 1fr; gap: 1.5rem; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .about-img-wrap { aspect-ratio: 16/9; max-height: 280px; }
+    .pricing-grid { grid-template-columns: 1fr; max-width: 380px; }
+    .trust-grid { grid-template-columns: 1fr; }
+    .trust-numbers { gap: 2.5rem; flex-wrap: wrap; }
+    .contact-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; text-align: center; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+  }
+  @media (max-width: 600px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .nav { padding: 1rem; }
+    .py { padding: 5rem 0; }
+  }
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: var(--bark);
+    z-index: 99;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .mobile-menu .close-btn {
+    position: absolute;
+    top: 1.5rem; right: 2rem;
+    font-size: 1.5rem;
+    color: var(--stone);
+    cursor: pointer;
+    background: none;
+    border: none;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo">Gjesager <span>Massage</span></a>
+  <div class="nav-links">
+    <a href="#services">Behandlinger</a>
+    <a href="#about">Om</a>
+    <a href="#pricing">Priser</a>
+    <a href="#contact">Kontakt</a>
+    <a href="#booking" class="nav-book">Bestil tid</a>
+  </div>
+  <div class="hamburger" id="hamburger" onclick="document.getElementById('mobileMenu').classList.add('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close-btn" onclick="document.getElementById('mobileMenu').classList.remove('open')">✕</button>
+  <a href="#services" onclick="document.getElementById('mobileMenu').classList.remove('open')">Behandlinger</a>
+  <a href="#about" onclick="document.getElementById('mobileMenu').classList.remove('open')">Om</a>
+  <a href="#pricing" onclick="document.getElementById('mobileMenu').classList.remove('open')">Priser</a>
+  <a href="#contact" onclick="document.getElementById('mobileMenu').classList.remove('open')">Kontakt</a>
+  <a href="#booking" onclick="document.getElementById('mobileMenu').classList.remove('open')" style="color: var(--accent-light)">Bestil tid →</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Professionel massagebehandling · DenDerBy</p>
+    <h1 class="hero-title">Genskab din<br><em>krop og ro</em></h1>
+    <p class="hero-sub">Evidensbaseret massage tilpasset dine behov - fra afspænding og velvære til skadesstøtte og sportsrestitution.</p>
+    <div class="hero-cta">
+      <a href="#booking" class="btn-primary">Bestil tid</a>
+      <a href="#services" class="btn-outline">Se behandlinger</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img-placeholder">
+      <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="100" cy="100" r="80" stroke="#3D3028" stroke-width="1"/>
+        <circle cx="100" cy="100" r="55" stroke="#3D3028" stroke-width="1"/>
+        <circle cx="100" cy="100" r="30" stroke="#3D3028" stroke-width="1"/>
+        <line x1="20" y1="100" x2="180" y2="100" stroke="#3D3028" stroke-width="1"/>
+        <line x1="100" y1="20" x2="100" y2="180" stroke="#3D3028" stroke-width="1"/>
+      </svg>
+    </div>
+    <div class="hero-badge">
+      <strong>6767+</strong>
+      <span>tilfredse klienter</span>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container py">
+    <div class="services-header">
+      <div>
+        <p class="section-label">Behandlinger</p>
+        <h2 class="section-title">Tilpasset<br>dine <em>behov</em></h2>
+      </div>
+      <p class="services-intro">En klinik med blandet fokus på velvære, terapeutisk behandling og sport. Hver session tilpasses dine mål, din krop og dit tempo.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M20 5C20 5 8 12 8 22C8 28.627 13.373 34 20 34C26.627 34 32 28.627 32 22C32 12 20 5 20 5Z"/>
+          <path d="M20 18C20 18 15 21 15 25C15 27.761 17.239 30 20 30C22.761 30 25 27.761 25 25C25 21 20 18 20 18Z"/>
+        </svg>
+        <h3 class="service-name">Svensk velvære</h3>
+        <p class="service-desc">Lange, rolige strøg, der løsner muskelspændinger, reducerer stress og giver en dyb fornemmelse af ro.</p>
+        <span class="service-tag">Velvære · Stresslindring</span>
+      </div>
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M10 30C10 30 15 20 20 20C25 20 30 30 30 30"/>
+          <path d="M10 20C10 20 15 10 20 10C25 10 30 20 30 20"/>
+          <circle cx="20" cy="15" r="3"/>
+        </svg>
+        <h3 class="service-name">Dybdegående massage</h3>
+        <p class="service-desc">Målrettet tryk på dybere muskellag for at løsne kroniske spændinger og vedvarende ømme punkter.</p>
+        <span class="service-tag">Terapeutisk · Spandingslindring</span>
+      </div>
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M8 32L20 8L32 32"/>
+          <path d="M13 24H27"/>
+          <circle cx="20" cy="8" r="2"/>
+        </svg>
+        <h3 class="service-name">Sportsmassage</h3>
+        <p class="service-desc">Behandling for eller efter aktivitet, der forbedrer ydeevnen, forebygger skader og fremmer restitution.</p>
+        <span class="service-tag">Ydeevne · Restitution</span>
+      </div>
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="8" y="12" width="24" height="18" rx="2"/>
+          <path d="M14 12V10C14 8.895 14.895 8 16 8H24C25.105 8 26 8.895 26 10V12"/>
+          <path d="M20 18V26M16 22H24"/>
+        </svg>
+        <h3 class="service-name">Skadesrehabilitering</h3>
+        <p class="service-desc">Struktureret behandling af akutte og kroniske skader i samspil med din rehabiliteringsplan.</p>
+        <span class="service-tag">Genoptræning · Smertehåndtering</span>
+      </div>
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="20" cy="20" r="12"/>
+          <path d="M20 14V20L24 24"/>
+          <path d="M20 8V6M20 34V32M32 20H34M6 20H8"/>
+        </svg>
+        <h3 class="service-name">Triggerpunkt</h3>
+        <p class="service-desc">Præcis behandling af overirritable muskelpunkter for at lindre udstrålende smerter og genoprette bevægelse.</p>
+        <span class="service-tag">Målrettet · Præcis</span>
+      </div>
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M10 20C10 14.477 14.477 10 20 10C25.523 10 30 14.477 30 20"/>
+          <path d="M10 20C10 25.523 14.477 30 20 30C25.523 30 30 25.523 30 20"/>
+          <path d="M14 16C15.657 14.343 17.828 13 20 13"/>
+        </svg>
+        <h3 class="service-name">Myofasciel frigørelse</h3>
+        <p class="service-desc">Blidt, vedvarende tryk der løsner fasciaens restriktioner og forbedrer holdning og bevægelighed.</p>
+        <span class="service-tag">Mobilitet · Holdning</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container py">
+    <div class="about-grid">
+      <div class="about-img-wrap">
+        <div class="about-img-bg">
+          <svg width="140" height="180" viewBox="0 0 140 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="70" cy="45" r="30" stroke="white" stroke-width="1"/>
+            <path d="M30 180C30 140 50 120 70 120C90 120 110 140 110 180" stroke="white" stroke-width="1"/>
+          </svg>
+        </div>
+        <div class="about-frame"></div>
+      </div>
+      <div class="about-content">
+        <p class="section-label">Om</p>
+        <h2 class="section-title">Erfarne hænder,<br><em>ægte omsorg</em></h2>
+        <p class="about-body">Jeg er JG, certificeret massør med over [X] års klinisk erfaring og erfaring inden for velvære. Jeg er uddannet ved Gjesager Massage og har arbejdet med alt fra kontoransatte med kroniske nakkespændinger til konkurrerende atleter frem mod stævner.</p>
+        <p class="about-body" style="margin-top:1rem">Min tilgang er enkel: lyt først, behandl bagefter. Hver session starter med en kort samtale, så behandlingen passer præcist til det, din krop har brug for den dag.</p>
+        <div class="cert-list">
+          <span class="cert-badge">Certificeret massør</span>
+          <span class="cert-badge">Certificeret i sportsmassage</span>
+          <span class="cert-badge">Førstehjælpscertificeret</span>
+          <span class="cert-badge">GDPR-kompatibel</span>
+        </div>
+        <div class="about-stats">
+          <div>
+            <div class="stat-num">8+</div>
+            <div class="stat-label">Års erfaring</div>
+          </div>
+          <div>
+            <div class="stat-num">500+</div>
+            <div class="stat-label">Behandlede klienter</div>
+          </div>
+          <div>
+            <div class="stat-num">4.9</div>
+            <div class="stat-label">Gennemsnitlig vurdering</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="container py">
+    <div class="pricing-header">
+      <p class="section-label">Priser</p>
+      <h2 class="section-title">Tydelige og ærlige <em>priser</em></h2>
+      <p style="font-size:0.9rem;color:var(--text-muted);margin-top:0.75rem">Endelige priser indsættes, når din bekræftede prisliste er klar.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <p class="price-duration">30 minutter</p>
+        <div class="price-amount"><span class="price-currency">kr</span>--</div>
+        <p class="price-note">Fokuseret session</p>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li>Fokus på et enkelt område</li>
+          <li>Ideel til vedligeholdelse</li>
+          <li>Restitution efter aktivitet</li>
+        </ul>
+        <a href="#booking" class="price-btn">Bestil 30 min.</a>
+      </div>
+      <div class="price-card featured">
+        <div class="price-popular">Mest populære</div>
+        <p class="price-duration">60 minutter</p>
+        <div class="price-amount"><span class="price-currency">kr</span>--</div>
+        <p class="price-note">Helkropssession</p>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li>Komplet behandling af hele kroppen</li>
+          <li>Indledende samtale inkluderet</li>
+          <li>Ideel ved første besøg</li>
+        </ul>
+        <a href="#booking" class="price-btn">Bestil 60 min.</a>
+      </div>
+      <div class="price-card">
+        <p class="price-duration">90 minutter</p>
+        <div class="price-amount"><span class="price-currency">kr</span>--</div>
+        <p class="price-note">Dybdegående og grundig</p>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li>Udvidet behandlingstid</li>
+          <li>Flere områder behandles</li>
+          <li>Bedst ved kroniske gener</li>
+        </ul>
+        <a href="#booking" class="price-btn">Bestil 90 min.</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section id="trust">
+  <div class="container py">
+    <div style="text-align:center;margin-bottom:3rem">
+      <p class="section-label">Anmeldelser</p>
+      <h2 class="section-title">Hvad klienter <em>siger</em></h2>
+    </div>
+    <div class="trust-grid">
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">Jeg kender til sådan noget massage.</p>
+        <div class="testimonial-author">Mette L.</div>
+        <div class="testimonial-role">Fast klient</div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">Jeg havde engang ondt i foden, men ikke mere!</p>
+        <div class="testimonial-author">Anders K.</div>
+        <div class="testimonial-role">Maratonløber</div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">Man skulle ikke tro at jeg flyttede kartoner hele dagen.</p>
+        <div class="testimonial-author">Sofus M.</div>
+        <div class="testimonial-role">Lagermand</div>
+      </div>
+    </div>
+    <div class="trust-numbers">
+      <div class="trust-num"><div class="num">500+</div><div class="lbl">Glade klienter</div></div>
+      <div class="trust-num"><div class="num">4.9</div><div class="lbl">Google-vurdering</div></div>
+      <div class="trust-num"><div class="num">8+</div><div class="lbl">År i praksis</div></div>
+      <div class="trust-num"><div class="num">100%</div><div class="lbl">Certificeret massør</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="booking">
+  <div class="container py">
+    <div class="booking-inner">
+      <p class="section-label">Bestil via telefon eller e-mail</p>
+      <h2 class="section-title">Klar til at <em>bestille tid?</em></h2>
+      <p class="booking-sub">Ring eller skriv for at forespørge en tid. Vi bekræfter din aftale direkte med dig.</p>
+      <div class="hero-cta" style="justify-content:center;margin-top:2rem">
+        <a href="tel:+4512345678" class="btn-primary">Ring +45 69 67 69 67</a>
+        <a href="mailto:hello@example.com" class="btn-outline">E-mail Massage@Gjesager.dk</a>
+      </div>
+      <p style="font-size:0.82rem;color:var(--text-muted);text-align:center;margin-top:1rem">Tidsbestilling foregår kun via telefon/e-mail lige nu.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container py">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p class="section-label">Find os</p>
+        <h2 class="section-title">Besøg <em>klinikken</em></h2>
+        <div class="contact-details">
+          <div class="contact-row">
+            <svg class="contact-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div>
+              <div class="contact-row-label">Adresse</div>
+              <div class="contact-row-value">RygGade 69<br>8722 DenDerBy</div>
+            </div>
+          </div>
+          <div class="contact-row">
+            <svg class="contact-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.64 11 19.79 19.79 0 011.58 2.4 2 2 0 013.55.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 7.91a16 16 0 006.16 6.16l.91-.91a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            <div>
+              <div class="contact-row-label">Telefon</div>
+              <div class="contact-row-value"><a href="tel:+4512345678">+45 69 67 69 67</a></div>
+            </div>
+          </div>
+          <div class="contact-row">
+            <svg class="contact-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <div>
+              <div class="contact-row-label">E-mail</div>
+              <div class="contact-row-value"><a href="mailto:hello@example.com">Massage@Gjesager.dk</a></div>
+            </div>
+          </div>
+        </div>
+        <div class="hours-grid" style="margin-top:2rem">
+          <div class="hours-row"><strong>Man - Fre</strong></div>
+          <div class="hours-row">9:00 – 18:00</div>
+          <div class="hours-row"><strong>Lørdag</strong></div>
+          <div class="hours-row">10:00 – 14:00</div>
+          <div class="hours-row"><strong>Søndag</strong></div>
+          <div class="hours-row">Lukket</div>
+        </div>
+      </div>
+      <div>
+        <!-- Replace src with your Google Maps embed URL -->
+        <div class="map-embed">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d707.2834647052662!2d9.605470807180925!3d55.750080383314604!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x464c86b041894c85%3A0x5793760fbaa63b57!2sBredal%20A%2FS!5e0!3m2!1sda!2sdk!4v1776364930245!5m2!1sda!2sdk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div style="margin-top:2rem;padding:1.5rem;background:rgba(255,255,255,0.05);border-radius:2px;border:1px solid rgba(196,185,168,0.1)">
+          <p style="font-size:0.78rem;color:var(--stone);line-height:1.7">Gratis parkering lige uden for klinikken. Kom gerne 5 minutter før din første aftale.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Gjesager <span>Massage</span></div>
+  <div class="footer-links">
+    <a href="#services">Behandlinger</a>
+    <a href="#pricing">Priser</a>
+    <a href="#booking">Bestil tid</a>
+    <a href="#contact">Kontakt</a>
+  </div>
+  <p class="footer-copy">© 2026 Gjesager Massage · CVR 69 69 67 67</p>
+</footer>
+
+<!-- STICKY BOOK CTA -->
+<div class="sticky-cta" id="stickyCta">
+  <a href="#booking">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    Bestil tid
+  </a>
+</div>
+
+<script>
+  const nav = document.getElementById('nav');
+  const stickyCta = document.getElementById('stickyCta');
+  let lastY = 0;
+
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y > 60) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+    if (y > 500) stickyCta.classList.add('visible');
+    else stickyCta.classList.remove('visible');
+    lastY = y;
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
